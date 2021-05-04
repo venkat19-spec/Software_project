@@ -1,0 +1,39 @@
+body{
+    background: #19b3d3;
+}
+.logo-image {
+    margin-left: 690px;
+    margin-bottom:0px;
+}
+.outer-box {
+    background-color: orange;
+    height: 270px;
+    width: 350px;
+    padding-top:10px;
+    padding-left:40px;
+    border: 2px solid green;
+    margin: 0px 300px 200px 600px;
+}
+.outer-box .inner-box {
+    background-color: lightgrey;
+    height: 200px;
+    width: 310px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 4px solid green;
+    text-align: auto;
+    text-size-adjust: auto;
+    
+  }
+
+.outer-box a {
+    color: rgb(89, 0, 255);
+    text-align: stretch;
+}
+
+.outer-box a:hover{
+    background: white;
+    transition: 0.5s;
+
+}

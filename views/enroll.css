@@ -1,0 +1,137 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+        
+body{
+    background-image: url('https://www.amrita.edu/sites/default/files/banner1_3.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+     background-size: 100% 100%;
+      /* Add the blur effect */
+ 
+}
+        
+       
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .check:hover .dropbtn {
+  background-color: red;
+}
+
+li.check {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.check:hover .dropdown-content {
+  display: block;
+}
+.active {
+  background-color: #4CAF50;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+input[type=text]:focus {
+  background-color: lightblue;
+}
+select {
+  width: 15%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+textarea {
+  width: 20%;
+  height: 100px;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+input[type=submit]{
+    background-color: green;
+  color: white;
+  border: 5px solid #555555;
+}
+button {   
+       background-color: #4CAF50;   
+       width: 20%;  
+        color: orange;   
+        padding: 15px;   
+        margin: 10px 0px;   
+
+        border: none;   
+        cursor: pointer;   
+         }   
+ form {   
+        border: 3px solid #f1f1f1;   
+    }   
+ input[type=text], input[type=password] {   
+        width: 50%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid grey;   
+        box-sizing: border-box;   
+    }  
+ button:hover {   
+        opacity: 0.7;   
+    }   
+  .cancelbtn {   
+        width: auto;   
+        padding: 10px 18px;  
+        margin: 10px 5px;  
+    }   
+        
+     
+ .container {   
+        padding: 25px;   
+        background-color: lightblue;  
+    }   
+ #subject{
+     width: 500px;;
+ }

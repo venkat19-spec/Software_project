@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>Check Student_attendence</title>
+        <meta charset="UTF-8">
+        <title>Sidebar Dashboard Template</title>
+        <link rel="stylesheet" href="styletable.css">
+        <div id="gradient" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    </head>
+    <body>
+        <input type="checkbox" id="check">
+        <!--header start-->
+        <header>
+            <label for="check">
+                <em class="fas fa-bars" id="sidebar_btn"></em>
+            </label>
+            <div class="left_area">
+                <h3>FACULTY <span>HOME PAGE</span></h3>
+            </div>
+            <div class="right_area">
+                <a href="logout" class="logout_btn">Logout</a>
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <div class="sidebar" align="center">
+                <img src="facultyicon.png" class="profile_image" alt="" height="200px" width="200px" border="2px">
+                <h4>Dr.Govind</h4>
+
+            <ul>
+                <li class="dropdown1"><a href="#"><em class="far fa-address-card"></em><span>Attendance</span></a>
+                    <ul>
+                        <li><a href="\takeattendence"><span>Take attendance</span></a></li>
+                        <li><a href="\checkattendence"><span>Check Attendance</span></a></li>
+                    </ul>
+                </li>
+                <li><a href="less"><em class="far fa-address-card"></em><span>Attendance <= 75%</span></a></li>
+                <li><a href="#"><em class="far fa-thumbs-up"></em><span>Approve OD</span></a></li>
+                <li><a href="#"><em class="far fa-thumbs-up"></em><span>Approve Med Leave</span></a></li>
+                <li><a href="#"><em class="fas fa-bell"></em><span>Alerts</span></a></li>
+                <li class="dropdown1"><a href="#"><em class="fas fa-sliders-h"></em><span>Settings</span></a>
+                    <ul>
+                        <li><a href="#"><span>Update Profile Pic</span></a></li>
+                        <li><a href="/changepassword"><span>Update Password</span></a></li>
+                    </ul>
+                
+                
+                </li>
+
+            </ul>
+
+        </div>
+        <!--sidebar end-->
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+        <div class="content">
+            <br><br><br><br>
+            <div class="box">
+            <h2> Class Details</h2>
+            <label>Subject:</label>
+            <input type="text" id="name-input">
+            <label>Department:</label>
+            <input type="text" id="department-input">
+            <label>Semester:</label>
+            <input type="text" id="semester-input">
+            <label>Class:</label>
+            <input type="text" id="class-input">
+            <br><br>
+            <div><button class="button" id="take">Take attendence</button></div>
+            </div>
+            <br><br><br>
+            <div>
+                <table id="table" style="border-radius:50%;" class="styled-table">
+                    <caption></caption>
+                    <thead>
+                        <th id="Rollno">Rollno</th>
+                        <th id="name">Name</th>
+                        <th id="Attended">No Attended</th>
+                        <th id="tot">Total Number</th>
+                        <th id="percentage">percentage</th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <br><br>
+                <div>
+                    <button class="butt" id="submit">Click Me</button>
+                </div>
+            </div>
+    </body>
+    <script src="checks.js"></script>
+    <script src=detailed_view.js></script>
+</html>

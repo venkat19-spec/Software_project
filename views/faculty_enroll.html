@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>faculty_enroll</title>
+        <meta charset="UTF-8">
+        <title>Admin Dashboard</title>
+        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    </head>
+    <body>
+        <input type="checkbox" id="check">
+        <!--header start-->
+        <header>
+            <label for="check">
+                <em class="fas fa-bars" id="sidebar_btn"></em>
+            </label>
+            <div class="left_area">
+                <h3>ADMIN <span>HOME PAGE</span></h3>
+            </div>
+            <div class="right_area">
+                <a href="/logout" class="logout_btn">Logout</a>
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <div class="sidebar" align="center"> 
+                <img src="adminicon.png" class="profile_image" alt="" height="200px" width="200px" border="2px">
+                <h4>Admin</h4>
+            <ul>
+        
+                  <li class="dropdown1"><a href="#"><em class="far fa-plus-square"></em><span>Add Subjects</span></a>
+                  <ul>
+                    <li><a href="newstudent"><span>Student to subjects</span></a></li>
+                    <li><a href="newfac"><span>Faculty to subjects</span></a></li>
+                </ul>
+                    </li>
+                  <li class="dropdown1"><a href="#"><em class="far fa-plus-square"></em><span>Add Users</span></a>
+                    <ul>
+                      <li><a href="studenttosubject"><span>Student to subjects</span></a></li>
+                      <li><a href="factosubject"><span>Faculty to subjects</span></a></li>
+                  </ul>
+                  </li>
+                  <li><a href="#"><em class="fas fa-pencil-ruler"></em><span>Attendance Rules</span></a></li>
+                  <li><a href="#"><em class="fas fa-file-export"></em><span>Export</span></a></li>
+                  <li><a href="#"><em class="fas fa-bell"></em><span>Alerts</span></a></li>
+                  <li class="dropdown1"><a href="#"><em class="fas fa-sliders-h"></em><span>Settings</span></a>
+                    <ul>
+                        <li><a href="#"><span>Update Profile Pic</span></a></li>
+                        <li><a href="/changepassword"><span>Update Password</span></a></li>
+                    </ul>
+                
+                </li>
+            </ul>
+        </div>
+<!--sidebar end-->
+<br><br><br><br>
+  <div class="content">
+    <div align="right">
+      <input placeholder="search by name" id="search-input">
+      <button id="search-btn">Search</button>
+   </div>
+   <br>
+   <div style="overflow-x:auto;">
+   <table id="table" align="leftwards">
+    <caption></caption>
+       <thead>
+           <th id="id">ID</th>
+           <th id="name">Name</th>
+           <th id="subject">Subject</th>
+           <th id="department">Department</th>
+           <th id="sem">Semester</th>
+           <th id="class">Class</th>
+           <th id="delete">Delete</th>
+           <th id="edit">Edit</th>
+       </thead>
+       <tbody></tbody>
+   </table>
+   <br><br>
+   <button id="gen" onclick="exportTableToCSV('members.csv')">Export as CSV File</button>
+  </div>
+   <br><br><br><br>
+   <div class="box" align="center">
+   <label>Subject:</label>
+   <input type="text" id="subject-input">
+   <label>Name:</label>
+   <input type="text" id="name-input">
+   <label>Department:</label>
+   <input type="text" id="department-input">
+   <br><br>
+   <label>Semester:</label>
+   <input type="text" id="semester-input">
+   <label>Class:</label>
+   <input type="text" id="class-input">
+   <br><br>
+   <button id="add-name-btn">Add Faculty</button>
+ </div>
+   <br><br><br><br>
+   <section hidden id="update-row" align="right">
+       <label>Name:</label>
+       <input type="text" id="update-name-input">
+       <button id="update-row-btn"> Update</button>
+   </section>
+  </div> 
+    <script src="faculty_enroll.js"></script>
+</body>
+</html>
