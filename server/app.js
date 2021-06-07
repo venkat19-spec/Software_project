@@ -444,12 +444,13 @@ app.post('/forgot', function (req, res) {
             port: 465,
             secure:true,
             auth: {
-               user: 'hareesh290401@gmail.com',
-               pass: 'H@tman29'
+               user: 'smartattendencesystem@gmail.com',
+               pass: 'Q@123Enm'
+
             }
         });
         const message = {
-            from: 'hareesh290401@gmail.com', // Sender address
+            from: 'smartattendencesystem@gmail.com', // Sender address
             to: email,         // List of recipients
             subject: 'Acknowledgement', // Subject line
             text: 'This a verification mail u will receive a reset link asap',// Plain text body,
@@ -494,12 +495,12 @@ app.post('/signup_faculty', function (req, res) {
             port: 465,
             secure:true,
             auth: {
-               user: 'hareesh290401@gmail.com',
-               pass: 'H@tman29'
+               user: 'smartattendencesystem@gmail.com',
+               pass: 'Q@123Enm'
             }
         });
         const message = {
-            from: 'H@tman29', // Sender address
+            from:'smartattendencesystem@gmail.com', // Sender address
             to: email,         // List of recipients
             subject: 'Acknowledgement', // Subject line
             html: `This a verification mail u will receive a reset link <a href="http://127.0.0.1:5500/reset1.html">here</a> to reset your password and use this otp '${otp}'`
@@ -543,12 +544,12 @@ app.post('/signup_Student', function (req, res) {
             port: 465,
             secure:true,
             auth: {
-               user: 'hareesh290401@gmail.com',
-               pass: 'H@tman29'
+               user: 'smartattendencesystem@gmail.com',
+               pass: 'Q@123Enm'
             }
         });
         const message = {
-            from: 'H@tman29', // Sender address
+            from: 'smartattendencesystem@gmail.com', // Sender address
             to: email,         // List of recipients
             subject: 'Acknowledgement', // Subject line
             html: `This a verification mail u will receive a reset link <a href="http://127.0.0.1:5500/reset1.html">here</a> to reset your password and use this otp '${otp}'`
