@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "jest --detectOpenHandles"
-    "jest-test": "jest --forceExit ./Jest-test"
+    "jest-test":"jest --forceExit ./Jest-test"
   },
   "keywords": [],
   "author": "",
