@@ -200,12 +200,12 @@ class DbService {
             console.log(error);
         }
     }
-    async insertNewName_newfac_id(name, fac_id, department, email, password) {
+    async insertNewName_newfac_id(facName, fac_id, facdept, facemail, password,facsub) {
         try {
             const insertId = await new Promise((resolve, reject) => {
-                const query = "INSERT INTO users_fac (name, fac_id, department, email, password) VALUES (?,?,?,?,?);";
+                const query = "INSERT INTO faculty (fac_id, facName,facdept, facemail, password,facsub) VALUES (?,?,?,?,?,?);";
 
-                connection.query(query, [name, fac_id, department, email, password] , (err, result) => {
+                connection.query(query, [facName, fac_id, facdept, facemail, password,facsub] , (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result);
                 })
@@ -224,7 +224,7 @@ class DbService {
     async enrolluser(username,password){
         try {
             const insertId = await new Promise((resolve, reject) => {
-                const query = "INSERT INTO admin_password (username, password) VALUES (?,?);";
+                const query = "INSERT INTO password (username, password) VALUES (?,?);";
 
                 connection.query(query, [username, password] , (err, result) => {
                     if (err) reject(new Error(err.message));
