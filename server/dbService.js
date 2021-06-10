@@ -55,12 +55,12 @@ class DbService {
             console.log(error);
         }
     }
-    async getAllData_attend(Semester) {
+    async getAllData_attend(subject) {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM attend Where Semester = ? ;";
+                const query = "SELECT id,rollno,name FROM names Where subject = ? ;";
 
-                connection.query(query,[Semester], (err, results) => {
+                connection.query(query,[subject], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
@@ -71,12 +71,45 @@ class DbService {
             console.log(error);
         }
     }
-    async getAllData_check(Semester) {
+    async getAllData_check(subject) {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT Rollno,Name,no_attended,total_no FROM attendence_database Where Semester = ? ;";
+                const query = "SELECT rollno,name,present,total FROM attend_record Where subject = ? ;";
 
-                connection.query(query,[Semester], (err, results) => {
+                connection.query(query,[subject], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async getAllData_log(subject,name) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT rollno,Date,present FROM attend_log Where subject = ? and name = ?;";
+
+                connection.query(query,[subject,name], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async getAllData_checksem(name) {
+        console.log('h0')
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT subject,present,total FROM attend_record Where name = ? ;";
+
+                connection.query(query,[name], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
@@ -92,7 +125,7 @@ class DbService {
        console.log(pass)
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT password FROM admin_password Where username = ? ;";
+                const query = "SELECT password FROM password Where username = ? ;";
 
                 connection.query(query,[username], (err, results) => {
                     if (err) reject(new Error(err.message));
@@ -156,6 +189,43 @@ class DbService {
             return {
                 id : insertId,
                 name : name,
+                rollno: rollno,
+                subject:subject
+            };
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async insertNewNamelog(id,rollno,subject,Date,Hour,Present,name) {
+        try {
+            const insertId = await new Promise((resolve, reject) => {
+                const query = "INSERT INTO attend_log (id,rollno,subject,Date,Hour,Present,name) VALUES (?,?,?,?,?,?,?);";
+
+                connection.query(query, [id,rollno,subject,Date,Hour,Present,name] , (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return {
+                name : name,
+                rollno: rollno,
+                subject:subject
+            };
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async insertNewRecord(name,rollno,subject,present,total) {
+        try {
+            const insertId = await new Promise((resolve, reject) => {
+                const query = "INSERT INTO attend_record(rollno,subject,present,total,name) VALUES (?,?,?,?,?);";
+
+                connection.query(query, [rollno,subject,present,total,name] , (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return {
                 rollno: rollno,
                 subject:subject
             };
@@ -308,12 +378,12 @@ class DbService {
             return false;
         }
     }
-    async updateNameById_attend() {
+    async updateNameById_attend(subject) {
         try { 
             const response = await new Promise((resolve, reject) => {
-                const query = "UPDATE attendence_database SET total_no = total_no + 1";
-    
-                connection.query(query, (err, result) => {
+                console.log(subject);
+                const query = "UPDATE attend_record SET total = total + 1 wHERE subject = ?";
+                connection.query(query,[subject], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.affectedRows);
                 })
@@ -329,9 +399,29 @@ class DbService {
         try {
             id = parseInt(id, 10); 
             const response = await new Promise((resolve, reject) => {
-                const query = "UPDATE attendence_database SET no_attended = no_attended+1 WHERE id = ?";
+                const query = "UPDATE attend_record SET present = present+1 WHERE id = ?";
     
                 connection.query(query, [id] , (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+    
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+    async updateNameById_log(id,Date,subject) {
+        try {
+            id = parseInt(id, 10); 
+            console.log(id)
+            console.log(Date)
+            const response = await new Promise((resolve, reject) => {
+                const query = "UPDATE attend_log SET present = present+1 WHERE id = ? and Date = ? and subject = ?";
+    
+                connection.query(query, [id,Date,subject] , (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.affectedRows);
                 })
