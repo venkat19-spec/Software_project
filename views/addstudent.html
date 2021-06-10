@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <title>Admin Dashboard</title>
         <link rel="stylesheet" href="stylesheet.css">
+        <div id="gradient" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     </head>
     <body>
@@ -40,12 +41,8 @@
                       <li><a href="factosubject"><span>Faculty to subjects</span></a></li>
                   </ul>
                   </li>
-                  <li><a href="#"><em class="fas fa-pencil-ruler"></em><span>Attendance Rules</span></a></li>
-                  <li><a href="#"><em class="fas fa-file-export"></em><span>Export</span></a></li>
-                  <li><a href="#"><em class="fas fa-bell"></em><span>Alerts</span></a></li>
                   <li class="dropdown1"><a href="#"><em class="fas fa-sliders-h"></em><span>Settings</span></a>
                     <ul>
-                        <li><a href="#"><span>Update Profile Pic</span></a></li>
                         <li><a href="/changepassword"><span>Update Password</span></a></li>
                     </ul>
                 
@@ -60,11 +57,10 @@
       <button id="search-btn">Search</button>
    </div>
    <br>
-   <div style="overflow-x:auto;">
+   <div style="overflow-y:scroll; height:400px">
    <table id="table" align="center">
        <caption></caption>
        <thead>
-           <th id="ID">ID</th>
            <th id="name">Name</th>
            <th id="rollno">rollno</th>
            <th id="subject">Subject</th>
