@@ -96,11 +96,14 @@ function insertRowIntoTable(data) {
     const isTableData = table.querySelector('.no-data');
 
     let tableHtml = "<tr>";
-
+    var f=0;
     for (var key in data) {
         if (data.hasOwnProperty(key)) {
+            if(f!=0){
             tableHtml += `<td>${data[key]}</td>`;
         }
+        f=1;
+    }
     }
 
     tableHtml += `<td><button class="delete-row-btn" data-id=${data.id}>Delete</td>`;
@@ -127,7 +130,6 @@ function loadHTMLTable(data) {
 
     data.forEach(function ({id, name, subject, department, semester ,clas}) {
         tableHtml += "<tr>";
-        tableHtml += `<td>${id}</td>`;
         tableHtml += `<td>${name}</td>`;
         tableHtml += `<td>${subject}</td>`;
         tableHtml += `<td>${department}</td>`;
