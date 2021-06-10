@@ -71,6 +71,15 @@ app.get('/less',(req,res) => {
 app.get('/faq',(req,res) => {
     res.render(path.join(__dirname,'../views/faq.html'));
 });
+app.get('/Checksemattendence',(req,res) => {
+    res.render(path.join(__dirname,'../views/checksem.html'));
+});
+app.get('/Checkless',(req,res) => {
+    res.render(path.join(__dirname,'../views/checkless.html'));
+});
+app.get('/view',(req,res) => {
+    res.render(path.join(__dirname,'../views/viewattendence.html'));
+});
 app.get('/facultydashboard',(request,response) => {
     console.log(request.session.userId)
     if(typeof(request.session.userId)==="undefined"){
@@ -237,6 +246,30 @@ app.post('/insert', (request, response) => {
     .then(data => response.json({ data: data}))
     .catch(err => console.log(err));
 });
+app.post('/insertlog', (request, response) => {
+
+    const { id,rollno,subject,Date,Hour,present,name} = request.body;
+    console.log(name);
+    const db = dbService.getDbServiceInstance();
+    
+    const result = db.insertNewNamelog(id,rollno,subject,Date,Hour,present,name);
+    
+
+    result
+    .then(data => response.json({ data: data}))
+    .catch(err => console.log(err));
+});
+app.post('/insertrecord', (request, response) => {
+
+    const { name, rollno,subject} = request.body;
+    console.log(name);
+    const db = dbService.getDbServiceInstance();
+    
+    const result = db.insertNewRecord(name,rollno,subject,0,0);
+    result
+    .then(data => response.json({ data: data}))
+    .catch(err => console.log(err));
+});
 app.post('/insert_fac', (request, response) => {
 
     const { name, subject, department, semester, clas} = request.body;
@@ -300,16 +333,33 @@ app.get('/getall_attend:search', (request, response) => {
     .catch(err => console.log(err));
 })
 app.get('/getall_check:search', (request, response) => {
-    console.log('hi')
+    console.log(request.session.userId)
     const { search } = request.params;
     const db = dbService.getDbServiceInstance();
-    console.log('hi')
     const result = db.getAllData_check(search);
     result
     .then(data => response.json({data : data}))
     .catch(err => console.log(err));
 })
-
+app.get('/getall_log:search', (request, response) => {
+    const { search } = request.params;
+    const name= request.session.userId;
+    const db = dbService.getDbServiceInstance();
+    const result = db.getAllData_log(search,name);
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+})
+app.get('/getallsem', (request, response) => {
+    console.log(request.session.userId)
+    const search=request.session.userId;
+    const db = dbService.getDbServiceInstance();
+    console.log('hi')
+    const result = db.getAllData_checksem(search);
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+})
 app.get('/getpass_student:username', (request, response) => {
     console.log('hi')
     const { username } = request.params;
@@ -351,9 +401,10 @@ app.patch('/update_fac', (request, response) => {
     .catch(err => console.log(err));
 });
 app.patch('/update_attend', (request, response) => {
+    const {subject} = request.body;
     const db = dbService.getDbServiceInstance();
     console.log('he')
-    const result = db.updateNameById_attend();
+    const result = db.updateNameById_attend(subject);
     
     result
     .then(data => response.json({success : data}))
@@ -361,9 +412,21 @@ app.patch('/update_attend', (request, response) => {
 });
 app.patch('/update_take', (request, response) => {
     const {id} = request.body;
+    console.log(id)
     const db = dbService.getDbServiceInstance();
 
     const result = db.updateNameById_take(id);
+    
+    result
+    .then(data => response.json({success : data}))
+    .catch(err => console.log(err));
+});
+app.patch('/update_log', (request, response) => {
+    const {id,Date,subject} = request.body;
+    console.log(id)
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.updateNameById_log(id,Date,subject);
     
     result
     .then(data => response.json({success : data}))
@@ -470,6 +533,7 @@ app.post('/forgot', function (req, res) {
 });
 var otpGenerator = require('otp-generator');
 const e = require('express');
+const { SIGUSR1 } = require('constants');
 app.post('/signup_faculty', function (req, res) {
     var name=req.body.name;
     console.log(name)
@@ -478,13 +542,14 @@ app.post('/signup_faculty', function (req, res) {
     var department=req.body.dep;
     console.log(department)
     var email=req.body.email;
+    var subject=req.body.subject;
     console.log(email)
     var otp=otpGenerator.generate(6, { upperCase: false, specialChars: false,alphabets:false });
     var password = bcrypt.hashSync(otp, saltRounds);
     console.log(otp)
     const db = dbService.getDbServiceInstance();
     console.log('bi');
-    db.insertNewName_newfac_id(name, fac_id, department,email,password);
+    db.insertNewName_newfac_id(name, fac_id, department,email,password,subject);
     db.enrolluser(name,password);
     var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(email.match(mailformat)){
