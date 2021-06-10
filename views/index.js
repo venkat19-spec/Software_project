@@ -89,6 +89,14 @@ addBtn.onclick = function () {
     })
     .then(response => response.json())
     .then(data => insertRowIntoTable(data['data']));
+
+    fetch('http://localhost:5000/insertrecord', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ name : name , rollno:rollno ,subject:subject})
+    })
 }
 
 function insertRowIntoTable(data) {
@@ -97,10 +105,14 @@ function insertRowIntoTable(data) {
     const isTableData = table.querySelector('.no-data');
 
     let tableHtml = "<tr>";
-
+    var f=0;
     for (var key in data) {
+       
         if (data.hasOwnProperty(key)) {
+            if(f==1){
             tableHtml += `<td>${data[key]}</td>`;
+            }
+            f=1;
         }
     }
 
@@ -129,7 +141,6 @@ function loadHTMLTable(data) {
 
     data.forEach(function ({id, name, rollno,subject}) {
         tableHtml += "<tr>";
-        tableHtml += `<td>${id}</td>`;
         tableHtml += `<td>${name}</td>`;
         tableHtml += `<td>${rollno}</td>`;
         tableHtml += `<td>${subject}</td>`;
