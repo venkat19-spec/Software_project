@@ -2,7 +2,7 @@ const addBtn = document.querySelector('#submit');
 
 addBtn.onclick = function (){
     const username = document.querySelector('#Username').value;
-    const password = document.querySelector('#Password').value
+    const password = document.querySelector('#Password').value;
     fetch('http://localhost:5000/getpass', {
         headers: {
             'Content-type': 'application/json'
@@ -20,7 +20,6 @@ function passwordcheck(data){
         location.replace("/facultydashboard");
     }
     else{
-        fetch('http://localhost:5000/startsession'+username)
-        location.replace("/facultydashboard");
+     alert("Wrong username or password");
     }
 }
