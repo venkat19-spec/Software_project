@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 const take =document.querySelector('#take');
 take.onclick = function(){
-    const searchValue = document.querySelector('#semester-input').value;
+    const searchValue = document.querySelector('#name-input').value;
     fetch('http://localhost:5000/getall_check'+ searchValue)
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
@@ -26,27 +26,28 @@ function loadHTMLTable(data) {
 
     let tableHtml = "";
 
-    data.forEach(function ({Rollno,Name,no_attended,total_no}) {
+    data.forEach(function ({rollno,name,present,total}) {
         var pn;
-        if(total_no==0){
+        if(present==0){
             pn=0.00;
         }
         else{
-        var p=no_attended/total_no*100;
+        var p=present/total*100;
         pn = p.toFixed(2);
         }
+       
         if(pn<75){
         tableHtml += "<tr>";
-        tableHtml += `<td>${Rollno}</td>`;
-        tableHtml += `<td>${Name}</td>`;
-        tableHtml += `<td>${no_attended}</td>`;
-        tableHtml += `<td>${total_no}</td>`;
+        tableHtml += `<td>${rollno}</td>`;
+        tableHtml += `<td>${name}</td>`;
+        tableHtml += `<td>${present}</td>`;
+        tableHtml += `<td>${total}</td>`;
         var pn;
-        if(total_no==0){
+        if(total==0){
             pn=0.00;
         }
         else{
-        var p=no_attended/total_no*100;
+        var p=present/total*100;
         pn = p.toFixed(2);
         }
         tableHtml += `<td>${pn}</td>`;
