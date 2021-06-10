@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>faculty_enroll</title>
+        <meta charset="UTF-8">
+        <title>Sidebar Dashboard Template</title>
+        <link rel="stylesheet" href="style1.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    </head>
+    <body>
+        <input type="checkbox" id="check">
+        <!--header start-->
+        <header>
+            <label for="check">
+                <em class="fas fa-bars" id="sidebar_btn"></em>
+            </label>
+            <div class="left_area">
+                <h3>STUDENT <span>HOME PAGE</span></h3>
+            </div>
+            <div class="right_area">
+                <a href="/logout" class="logout_btn">Logout</a>
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <div class="sidebar" align="center">
+                <img src="studenticon.jpg" class="profile_image" alt="" height="200px" width="200px" border="2px">
+                <h4>Venkataraman</h4>
+            <a href="Checksemattendence"><em class="fas fa-desktop"></em><span>Dashboard</span></a>
+            <a href="checkless"><em class="fab fa-meetup"></em><span>Join Meeting</span></a>
+            <a href="view"><em class="far fa-address-card"></em><span>Attendance</span></a>
+
+
+        </div>
+        <!--sidebar end-->
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+        <div class="content">
+            <br><br><br><br><br><br><br>
+            <div>
+                <table id="table" style="border-radius:50%;" class="styled-table">
+                    <caption></caption>
+                    <thead>
+                        <th id="subject">subject</th>
+                        <th id="Attended">No Attended</th>
+                        <th id="tot">Total Number</th>
+                        <th id="percentage">percentage</th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <br><br>
+                <div>
+                </div>
+        </div>
+    </body>
+        <script src="checkless.js"></script>
+</html>
